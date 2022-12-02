@@ -352,10 +352,6 @@ b {
 	display: -ms-flexbox;
 }
 
-.modal-section {
-	/* position: relative; */
-}
-
 .modal {
 	width: 90vh;
 	height: auto;
