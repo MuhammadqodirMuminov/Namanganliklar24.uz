@@ -7,6 +7,8 @@ const elForm = document.querySelector(".form");
 const elCencelbtn = document.querySelector(".cencel");
 const modalTwo = document.querySelector(".modal2");
 const modalThree = document.querySelector(".modal3");
+const elSearchForm = document.querySelector(".form-search");
+const elsearchInput = document.querySelector(".search-input");
 
 const elInpurTitle = document.querySelector(".input-title");
 const elInpurSubtitle = document.querySelector(".input-subtitle");
@@ -39,7 +41,7 @@ closeBtn.addEventListener("click", function (e) {
 
 // creating post
 
-function addPost(items) {
+function addPost(items, reg = "") {
 	cardParent.textContent = "";
 	for (let i = 0; i < items.length; i++) {
 		const element = items[i];
@@ -173,4 +175,20 @@ cardParent.addEventListener("click", function (evt) {
 
 elCencelbtn.addEventListener("click", function () {
 	modalTwo.classList.remove("modal-two");
+});
+
+elSearchForm.addEventListener("submit", function (evt) {
+	evt.preventDefault();
+
+	const search = elsearchInput.value;
+	const searchRegex = new RegExp(search.trim(), "gi");
+
+	const elementSearch = posts.filter((item) => item.title.match(searchRegex));
+
+	if (elementSearch.length > 0) {
+		addPost(elementSearch);
+		elsearchInput.value = "";
+	} else {
+		alert("Please enter");
+	}
 });
